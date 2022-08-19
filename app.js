@@ -9,14 +9,22 @@ const app = Vue.createApp({
             playerHealth: 100
         }
     },
+    computed:{
+        attackMonsterHealth(){
+            return {width: this.monsterHealth + '%'};
+        },
+        attackPlayerHealth(){
+            return {width: this.playerHealth + '%'};
+        }
+    },
     methods:{
         attackMonster(){
-            const healthDamage = getDamage(12,5);
+            const healthDamage = getDamage(5,12);
             this.monsterHealth -= healthDamage;
             this.attackPlayer();
         },
         attackPlayer(){
-            const healthDamage = getDamage(15,8);
+            const healthDamage = getDamage(8,15);
             this.playerHealth -= healthDamage;
         }
 
