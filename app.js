@@ -7,7 +7,27 @@ const app = Vue.createApp({
         return {
             monsterHealth: 100,
             playerHealth: 100,
-            currentRound: 0
+            currentRound: 0,
+            winner: null
+        }
+    },
+
+    watch:{
+        monsterHealth(value){
+            if(value <= 0 && this.playerHealth === 0 ){
+                this.winner = 'draw';
+                return;
+            }else if(value <= 0){
+                this.winner = 'player'
+            }
+        },
+        playerHealth(value){
+            if(value <= 0 && this.monsterHealth === 0 ){
+                this.winner = 'draw';
+                return;
+            }else if(value <= 0){
+                this.winner = 'monster'
+            }
         }
     },
     computed:{
